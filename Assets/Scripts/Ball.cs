@@ -3,9 +3,9 @@
 public class Ball : MonoBehaviour
 {
     // Configuration parameters
-    [SerializeField] Paddle paddle1;
+    [SerializeField] Paddle paddle1 = null;
     [SerializeField] Vector2 launchVelocity = new Vector2(1f, 1f);
-    [SerializeField] AudioClip[] ballSounds;
+    [SerializeField] AudioClip[] ballSounds = null;
     [SerializeField] float randomFactor = 0.2f;
 
     // State variables
@@ -55,8 +55,21 @@ public class Ball : MonoBehaviour
         );
         if (hasStarted)
         {
-            ballAudioSource.PlayOneShot(ballSounds[Random.Range(0, ballSounds.Length)]);
+            HandleBallSounds();
             ballRigidbody2D.velocity += velocityTweak;
+        }
+    }
+
+    private void HandleBallSounds()
+    {
+        if (ballSounds != null && ballSounds.Length != 0)
+        {
+            AudioClip ballSound = ballSounds[Random.Range(0, ballSounds.Length)];
+            ballAudioSource.PlayOneShot(ballSound);
+        }
+        else
+        {
+            Debug.LogError("No sound clips has been assigned to game object: [" + name + "]");
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
@@ -13,6 +11,7 @@ public class Paddle : MonoBehaviour
     {
         float mouseXPosInUnits = Input.mousePosition.x / Screen.width * screenWidthInUnits;
         mouseXPosInUnits = Mathf.Clamp(mouseXPosInUnits, minClamp, maxClamp);
+
         Vector2 paddlePos = new Vector2(mouseXPosInUnits, transform.position.y);
         transform.position = paddlePos;
     }

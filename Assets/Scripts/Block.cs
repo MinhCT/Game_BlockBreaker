@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     // Configuration parameters
-    [SerializeField] AudioClip breakSound;
-    [SerializeField] GameObject blockSparklesVFX;
-    [SerializeField] Sprite[] hitSprites;
+    [SerializeField] AudioClip breakSound = null;
+    [SerializeField] GameObject blockSparklesVFX = null;
+    [SerializeField] Sprite[] hitSprites = null;
+    [SerializeField] float sparklesDestroySec = 2f;
 
     // Cached references
     Level level;
     GameSession gameStatus;
 
     // State variables
-    [SerializeField] int timesHit; // TODO: only serialized for debugging
+    int timesHit;
 
     private void Start()
     {
@@ -26,7 +24,7 @@ public class Block : MonoBehaviour
     private void CountBreakableBlocks()
     {
         level = FindObjectOfType<Level>();
-        if (tag == "Breakable")
+        if (CompareTag("Breakable"))
         {
             level.CountBlocks();
         }
@@ -34,7 +32,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (tag == "Breakable")
+        if (CompareTag("Breakable"))
         {
             HandleHit();
         }
@@ -54,6 +52,15 @@ public class Block : MonoBehaviour
         }
     }
 
+    private void DestroyBlock()
+    {
+        PlayBlockDestroySFX();
+        level.BlockDestroyed();
+        TriggerSparklesVFX();
+
+        Destroy(gameObject);
+    }
+
     private void ShowNextHitSprite()
     {
         int spriteIndex = timesHit - 1;
@@ -67,14 +74,6 @@ public class Block : MonoBehaviour
         }
     }
 
-    private void DestroyBlock()
-    {
-        PlayBlockDestroySFX();
-        Destroy(gameObject);
-        level.BlockDestroyed();
-        TriggerSparklesVFX();
-    }
-
     private void PlayBlockDestroySFX()
     {
         gameStatus.AddToScore();
@@ -84,6 +83,6 @@ public class Block : MonoBehaviour
     private void TriggerSparklesVFX()
     {
         GameObject sparkles = Instantiate(blockSparklesVFX, transform.position, transform.rotation);
-        Destroy(sparkles, 2f);
+        Destroy(sparkles, sparklesDestroySec);
     }
 }

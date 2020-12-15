@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Level : MonoBehaviour
 {
     // Configuration parameters
-    [SerializeField] int breakableBlocks; // Serialized for debugging purposes
+    int breakableBlocks;
 
     // Cached references
     SceneLoader sceneLoader;

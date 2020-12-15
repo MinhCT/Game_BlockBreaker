@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class GameSession : MonoBehaviour
@@ -8,7 +6,7 @@ public class GameSession : MonoBehaviour
     // Configuration parameters
     [Range(0.1f, 10f)] [SerializeField] float gameSpeed = 1f;
     [SerializeField] int pointsPerBlockDestroyed = 32;
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText = null;
 
     // State variables
     [SerializeField] int currentScores = 0;

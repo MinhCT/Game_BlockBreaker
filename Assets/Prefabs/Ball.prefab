@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8051314621248615613}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: MainBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8e28c2130c77b834c85aa326eaf66b88, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.5592139, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -135,12 +135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddle1: {fileID: 0}
-  launchVelocity: {x: 2, y: 10}
+  launchVelocity: {x: 4, y: 10}
   ballSounds:
   - {fileID: 8300000, guid: 3e39bbc5d056d7841b0d3317a650d0b5, type: 3}
   - {fileID: 8300000, guid: d8e620432ec39a3448e43a4df171d8e6, type: 3}
   - {fileID: 8300000, guid: 3d48a7a67d9532d42b4ff45fea85fb32, type: 3}
   - {fileID: 8300000, guid: 936822f1ae9cc1044a32add0edf0737a, type: 3}
+  randomFactor: 0.3
 --- !u!82 &-8051314621248615613
 AudioSource:
   m_ObjectHideFlags: 0

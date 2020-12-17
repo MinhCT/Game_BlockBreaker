@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Breakable
   - Unbreakable
+  - MainBall
+  - SpawnBall
+  - Bonus
+  - MainPaddle
   layers:
   - Default
   - TransparentFX
